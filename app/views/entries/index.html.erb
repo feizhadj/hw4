@@ -1,0 +1,32 @@
+<div class="row">
+  <% for entry in @entries %>
+    <div class="col-sm-6 col-md-3">
+      <h4>
+        <%# find user who created entry %>
+        <% user = User.find_by({ "id" => entry["user_id"] }) %>
+        <%# handle any potential bad data where the entry is missing a user %>
+        <% if user %>
+          <%= user["first_name"] %>
+        <% else %>
+          anonymous
+        <% end %>
+      </h4>
+
+      <%# conditionally display attached file if entry.uploaded_image.attached? %>
+      <% if entry.uploaded_image.attached? %>
+        <%# use url_for(entry.uploaded_image) as attached file's url %>
+        <img src="<%= url_for(entry.uploaded_image) %>" class="img-fluid">
+      <% else %>
+        <%# otherwise display original image url from database column %>
+        <img src="<%= entry["image"] %>" class="img-fluid">
+      <% end %>
+
+        <div class="col text-end">
+          <div class="small fst-italic"><%= entry["created_at"].strftime("%-m/%d/%y at %-I:%M %p") %></div>
+        </div>
+      </div>
+
+      <p><%= entry["body"] %></p>
+    </div>
+  <% end %>
+</div>
