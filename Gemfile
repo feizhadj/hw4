@@ -11,7 +11,12 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 # gem "aws-sdk-s3", require: false
 
 group :development, :test do
+  gem "sqlite3", "~> 1.4"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+end
+
+group :production do
+  gem "pg"
 end
 
 group :development do
@@ -20,6 +25,3 @@ group :development do
   gem "web-console"
 end
 
-group :production do
-  gem "pg"
-end
