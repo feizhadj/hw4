@@ -18,9 +18,9 @@
   </p>
 
    <div class="mb-3">
-      <label for="uploaded_image_input" class="form-label">Upload Image</label>
-      <input type="file" name="uploaded_image" id="uploaded_image_input" class="form-control">
-    </div>
+  <%= form.label "uploaded_image", :class => "form-label" %>
+  <%= form.file_field "uploaded_image", :accept => "image/png,image/jpg,image/jpeg,image/gif", :class => "form-control" %>
+  </div>
 
   <input type="hidden" name="place_id" value="<%= params["place_id"] %>">
 
